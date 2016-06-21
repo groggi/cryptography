@@ -310,7 +310,7 @@ class X509Backend(object):
 @six.add_metaclass(abc.ABCMeta)
 class DHBackend(object):
     @abc.abstractmethod
-    def generate_dh_parameters(self, key_size):
+    def generate_dh_parameters(self, generator, key_size):
         """
         Generate a DHParameters instance with a modulus of key_size bits.
         """
@@ -323,7 +323,7 @@ class DHBackend(object):
         """
 
     @abc.abstractmethod
-    def generate_dh_private_key_and_parameters(self, key_size):
+    def generate_dh_private_key_and_parameters(self, generator, key_size):
         """
         Generate a DHPrivateKey instance using key size only.
         """
@@ -344,12 +344,6 @@ class DHBackend(object):
     def load_dh_parameter_numbers(self, numbers):
         """
         Returns a DHParameters provider.
-        """
-
-    @abc.abstractmethod
-    def dh_exchange_algorithm_supported(self, exchange_algorithm):
-        """
-        Returns whether the exchange algorithm is supported by this backend.
         """
 
     @abc.abstractmethod
